@@ -151,7 +151,7 @@ diamond_db <- function(input_name, ppi_name, deg_cutoff = 0.05, to_db = TRUE, fo
 
   cur_ppi <- ppi_network_from_db(ppi_name = ppi_name, con)
 
-  module < MODifieR::diamond(MODifieR_input = MODifieR_input,
+  module <- MODifieR::diamond(MODifieR_input = MODifieR_input,
                              ppi_network = cur_ppi,
                              deg_cutoff = deg_cutoff,
                              n_output_genes = n_output_genes,
