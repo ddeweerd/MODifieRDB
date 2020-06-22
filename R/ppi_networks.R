@@ -6,6 +6,9 @@
 #' @param ppi_network A network as a dataframe where the first 2 columns are the interactions
 #'@export
 ppi_network_to_db <- function(ppi_network, ppi_name, con){
+
+  check_unique_ppi(ppi_name, con)
+
   ppi_network <- MODifieR::validate_ppi(ppi_network)
   ppi_table <- get_table_hash()
 

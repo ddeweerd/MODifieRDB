@@ -1,6 +1,8 @@
 #' @export
 MODifieR_object_to_db.MODifieR_input <- function(MODifieR_object, object_name, con){
 
+  check_unique_input(object_name, con)
+
   input_name <- object_name
 
   settings <- prepare_input_settings_for_db(MODifieR_object, input_name)

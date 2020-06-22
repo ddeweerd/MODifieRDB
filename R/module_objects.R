@@ -1,5 +1,6 @@
-
 MODifieR_object_to_db.MODifieR_module <- function(MODifieR_module, object_name, con){
+
+  check_unique_module(object_name, con)
 
   module_name <- object_name
 

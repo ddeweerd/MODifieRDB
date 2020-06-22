@@ -151,3 +151,52 @@ delete_row <- function(table_name, field_identifier, row_identifier, con){
   dbExecute(con, sprintf("DELETE FROM '%s' WHERE %s IS '%s'",
                          table_name, field_identifier, row_identifier))
 }
+
+check_input_existence <- function(input_name, con){
+  input_name %in% get_available_input_objects(con)$input_name
+}
+
+check_module_existence <- function(module_name, con){
+  module_name %in% get_available_module_objects(con)$module_name
+}
+
+check_ppi_existence <- function(ppi_name, con){
+  ppi_name %in% get_available_networks(con)
+}
+
+print_exists <- function(type){
+  paste0(type, " already exists in database, choose another name")
+}
+
+print_if_null <- function(var){
+  paste0("Module Name is NULL, probably input field is empty")
+}
+
+check_unique_input <- function(input_name, con){
+  if(check_input_existence(input_name, con)){
+    stop(print_exists(input_name), call. = F)
+  }
+}
+
+check_unique_module <- function(module_name, con){
+  if(check_module_existence(module_name, con)){
+    stop(print_exists(module_name), call. = F)
+  }
+}
+
+check_unique_ppi <- function(ppi_name, con){
+  if(check_ppi_existence(ppi_name, con)){
+    stop(print_exists(ppi_name), call. = F)
+  }
+}
+
+check_if_null <- function(var){
+  if (is.null(var)){
+    stop(print_if_null(var))
+  }
+}
+
+validate_inference_db <- function(module_name, con){
+  check_if_null(module_name)
+  check_unique_module(module_name, con)
+}

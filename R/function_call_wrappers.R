@@ -15,6 +15,8 @@ mcode_db <- function(input_name, ppi_name, to_db = TRUE, folder = NULL,
                              fdt = 0.8, loops = T, deg_cutoff = 0.05,
                              module_cutoff = 3.5, module_name, con){
 
+  validate_inference_db(module_name, con)
+
   MODifieR_input <- MODifieR_input_from_db(input_name = input_name, con)
 
   cur_ppi <- ppi_network_from_db(ppi_name = ppi_name, con)
@@ -73,6 +75,8 @@ clique_sum_db <- function(input_name, ppi_name, n_iterations = 100000, to_db = T
                           clique_significance = 0.01, min_clique_size = 2,
                           multiple_cores = T, n_cores = 4, module_name, con){
 
+  validate_inference_db(module_name, con)
+
   MODifieR_input <- MODifieR_input_from_db(input_name = input_name, con)
 
   db_loc <- match_ppi_to_db_loc(ppi_name, con)
@@ -108,6 +112,8 @@ wgcna_db <- function(input_name, group_of_interest, minModuleSize = 30, deepSpli
                      pamRespectsDendro = FALSE, mergeCutHeight = 0.1, numericLabels = TRUE,
                      pval_cutoff = 0.05, corType = "bicor", maxBlockSize = 10000, TOMType = "signed",
                      saveTOMs = TRUE, maxPOutliers = 0.1, module_name, con){
+
+  validate_inference_db(module_name, con)
 
   MODifieR_input <- MODifieR_input_from_db(input_name = input_name, con)
 
@@ -147,6 +153,8 @@ diamond_db <- function(input_name, ppi_name, deg_cutoff = 0.05, to_db = TRUE, fo
                        include_seed = F, module_name, con){
 
 
+  validate_inference_db(module_name, con)
+
   MODifieR_input <- MODifieR_input_from_db(input_name = input_name, con)
 
   cur_ppi <- ppi_network_from_db(ppi_name = ppi_name, con)
@@ -182,6 +190,8 @@ correlation_clique_db <- function(input_name, ppi_name, frequency_cutoff = 0.5, 
                                   clique_significance = 0.01, deg_cutoff = 0.05,
                                   multiple_cores = FALSE, n_cores = 3, module_name, con){
 
+
+  validate_inference_db(module_name, con)
 
   MODifieR_input <- MODifieR_input_from_db(input_name = input_name, con)
 
@@ -221,6 +231,8 @@ moda_db <- function(input_name, cutmethod = "Density", to_db = TRUE, folder = NU
                     group_of_interest, specificTheta = 0.1,
                     conservedTheta = 0.1, module_name, con){
 
+  validate_inference_db(module_name, con)
+
   MODifieR_input <- MODifieR_input_from_db(input_name = input_name, con)
 
   module <- MODifieR::moda(MODifieR_input = MODifieR_input,
@@ -252,6 +264,8 @@ diffcoex_db <- function(input_name, beta = NULL, cor_method = "spearman", to_db 
                         pamRespectsDendro = FALSE,
                         minClusterSize = 20, cutHeight = 0.2,
                         pval_cutoff = 0.05, module_name, con){
+
+  validate_inference_db(module_name, con)
 
   MODifieR_input <- MODifieR_input_from_db(input_name = input_name, con)
 
@@ -287,6 +301,8 @@ diffcoex_db <- function(input_name, beta = NULL, cor_method = "spearman", to_db 
 modulediscoverer_db <- function(input_name, ppi_name, permutations = 10000, to_db = TRUE, folder = NULL,
                                 deg_cutoff =  0.05, repeats = 15, clique_cutoff = 0.01,
                                 n_cores, module_name, con){
+
+  validate_inference_db(module_name, con)
 
   MODifieR_input <- MODifieR_input_from_db(input_name = input_name, con)
 
