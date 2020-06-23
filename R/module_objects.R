@@ -14,7 +14,7 @@ MODifieR_object_to_db.MODifieR_module <- function(MODifieR_module, object_name, 
 
   settings <- prepare_input_settings_for_db(MODifieR_module, module_name)
 
-  main_register <- get_main_module_register_row(MODifieR_module, module_name)
+  main_register <- get_main_module_register_row(MODifieR_module, module_name, con)
 
   register_row <- get_register_row(MODifieR_module)
 
@@ -30,7 +30,7 @@ MODifieR_object_to_db.MODifieR_module <- function(MODifieR_module, object_name, 
 }
 
 #Prepares for the main module register
-get_main_module_register_row <- function(MODifieR_module, module_name){
+get_main_module_register_row <- function(MODifieR_module, module_name, con){
   ppi_name <- as.character(MODifieR_module$settings$ppi_network)
   if (length(ppi_name) == 0){
     if (!length(MODifieR_module$settings$db) == 0){
