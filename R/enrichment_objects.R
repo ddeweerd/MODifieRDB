@@ -14,7 +14,7 @@ enrichment_object_to_db <- function(enrichment_object,
                append = TRUE)
 }
 #'@export
-enrichment_object_from_db <- function(con, rowid){
+enrichment_object_from_db <- function(rowid, con){
   query <- sprintf("SELECT * FROM enrichment_objects WHERE rowid IS '%s' ", rowid)
   raw_enrichment <- dbGetQuery(con, query)
   unserialize(raw_enrichment[1,1][[1]])
