@@ -169,11 +169,11 @@ print_exists <- function(type){
   paste0(type, " already exists in database, choose another name")
 }
 
-print_if_null <- function(var){
+print_if_null <- function(){
   paste0("Module Name is NULL, probably input field is empty")
 }
 
-print_if_empty <- function(var){
+print_if_empty <- function(){
   paste0("Module Name is empty")
 }
 
@@ -195,14 +195,14 @@ check_unique_ppi <- function(ppi_name, con){
   }
 }
 
-check_if_null <- function(var){
-  if (is.null(var)){
-    stop(print_if_null(var))
+check_if_null <- function(cur_var){
+  if (is.null(cur_var)){
+    stop(print_if_null(cur_var), call. = F)
   }
 }
-check_if_empty <- function(var){
-  if (var == ""){
-    stop(print_if_empty)
+check_if_empty <- function(cur_var){
+  if (cur_var == ""){
+    stop(print_if_empty(), call. = F)
   }
 }
 
