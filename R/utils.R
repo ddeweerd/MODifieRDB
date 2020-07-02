@@ -172,6 +172,10 @@ print_if_null <- function(var){
   paste0("Module Name is NULL, probably input field is empty")
 }
 
+print_if_empty <- function(var){
+  paste0("Module Name is empty")
+}
+
 check_unique_input <- function(input_name, con){
   if(check_input_existence(input_name, con)){
     stop(print_exists(input_name), call. = F)
@@ -195,8 +199,14 @@ check_if_null <- function(var){
     stop(print_if_null(var))
   }
 }
+check_if_empty <- function(var){
+  if (var == ""){
+    stop(print_if_empty)
+  }
+}
 
 validate_inference_db <- function(module_name, con){
+  check_if_empty(module_name)
   check_if_null(module_name)
   check_unique_module(module_name, con)
 }
