@@ -3,6 +3,7 @@
 #' @import dplyr
 #' @import magrittr
 #' @import RSQLite
+#' @import tibble
 
 
 
