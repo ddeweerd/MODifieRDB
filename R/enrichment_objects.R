@@ -1,12 +1,12 @@
 #'@export
 enrichment_object_to_db <- function(enrichment_object,
-                                    input_name,
+                                    module_name,
                                     enrichment_method,
                                     con){
   if(!RSQLite::dbExistsTable(con, "enrichment_register")){
      create_enrichment_tables(con)
   }
-  dbWriteTable(conn = con, "enrichment_register", prepare_enrichment_register(input_name,
+  dbWriteTable(conn = con, "enrichment_register", prepare_enrichment_register(module_name,
                                                                               enrichment_method),
                append = TRUE)
 
@@ -26,9 +26,9 @@ get_available_enrichment_objects <- function(con){
   }
   dbGetQuery(con, "SELECT rowid, *  FROM enrichment_register")
 }
-prepare_enrichment_register <- function(input_name, enrichment_method){
-  as.data.frame(t(c(input_name, enrichment_method))) %>%
-    set_colnames(c("input_name", "enrichment_method"))
+prepare_enrichment_register <- function(module_name, enrichment_method){
+  as.data.frame(t(c(module_name, enrichment_method))) %>%
+    set_colnames(c("module_name", "enrichment_method"))
 }
 
 serialize_to_df <- function(enrichment_object){
