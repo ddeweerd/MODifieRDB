@@ -35,7 +35,7 @@ serialize_to_df <- function(enrichment_object){
   tibble::tibble(data = blob::as.blob(serialize(enrichment_object, NULL))) %>%
     set_colnames("enrichment_object")
 }
-
+#'@export
 get_input_name_by_enrichment_row <- function(row_id, con){
   query <- sprintf("SELECT DISTINCT input_name FROM module_register
   WHERE module_name IS (SELECT module_name FROM enrichment_register WHERE rowid IS '%s') ", row_id)

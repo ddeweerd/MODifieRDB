@@ -52,12 +52,12 @@ ppi_network_from_db <- function(ppi_name, con){
 get_available_db_networks <- function(con){
   dbGetQuery(con, "SELECT * FROM ppi_db_register")
 }
-
+#'@export
 match_db_loc_to_ppi <- function(ppi_db_location, con){
   query <- sprintf("SELECT ppi_name FROM ppi_db_register WHERE ppi_db_location IS '%s' ", ppi_db_location)
   unname(unlist(dbGetQuery(con, query)))
 }
-
+#'@export
 match_ppi_to_db_loc <- function(ppi_name, con){
   query <- sprintf("SELECT ppi_db_location FROM ppi_db_register WHERE ppi_name IS '%s' ", ppi_name)
   unname(unlist(dbGetQuery(con, query)))
