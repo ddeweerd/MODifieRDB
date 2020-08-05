@@ -54,7 +54,7 @@ fetch_diffcoex_module <- function(module_name, con){
 
   module_p_values_f <- dbGetQuery(con, sprintf("SELECT * FROM %s", as.character(info_table["module_p_values"])))
 
-  module_p_values <- data.frame("pvalue" = module_p_values_f[,2], stringsAsFactors = F)
+  module_p_values <- data.frame("pvalue" = module_p_values_f[,3], stringsAsFactors = F)
   rownames(module_p_values) <- module_p_values_f[,1]
 
   color_table <- dbGetQuery(con, sprintf("SELECT * FROM %s", as.character(info_table["color_vector"])), row.names = T)
@@ -64,7 +64,7 @@ fetch_diffcoex_module <- function(module_name, con){
   names(color_vector) <- color_table[,1]
 
   query <- sprintf("SELECT module_colors FROM diffcoex_module_colors WHERE module_name IS '%s' ", module_name)
-  module_list_df <- dbGetQuery(con, query, row.names = T)
+  module_list_df <- dbGetQuery(con, query)
 
   module_colors <- as.character(unname(sapply(module_list_df$module_colors, uncollapse_genes)))
 

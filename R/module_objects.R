@@ -1,3 +1,4 @@
+#' @export
 MODifieR_object_to_db.MODifieR_module <- function(MODifieR_module, object_name, con){
 
   check_unique_module(object_name, con)
@@ -34,7 +35,7 @@ get_main_module_register_row <- function(MODifieR_module, module_name, con){
   ppi_name <- as.character(MODifieR_module$settings$ppi_network)
   if (length(ppi_name) == 0){
     if (!length(MODifieR_module$settings$db) == 0){
-      ppi_name <-match_db_loc_to_ppi(MODifieR_module$settings$db, con = con)
+      ppi_name <- match_db_loc_to_ppi(MODifieR_module$settings$db, con = con)
     }else{
     ppi_name <- NA
     }
