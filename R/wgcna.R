@@ -54,7 +54,7 @@ fetch_wgcna_module <- function(module_name, con){
   query <- sprintf("SELECT module_colors FROM wgcna_module_colors WHERE module_name IS '%s' ", module_name)
   module_list_df <- dbGetQuery(con, query)
 
-  module_colors <- unname(sapply(module_list_df$module_genes, uncollapse_genes))
+  module_colors <- uncollapse_genes(genes = module_list_df$module_colors)
 
 
   query <- sprintf("SELECT softthreshold_value FROM wgcna_soft_threshold WHERE module_name IS '%s' ", module_name)
