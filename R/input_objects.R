@@ -21,7 +21,8 @@ MODifieR_object_to_db.MODifieR_input <- function(MODifieR_object, object_name, c
 }
 #Prepares for the main input register
 get_main_input_register_row <- function(MODifieR_object, input_name){
-  cbind("input_name" = input_name, "input_type" = class(MODifieR_object)[3]) %>%
+  cbind("input_name" = input_name,
+        "input_type" = class(MODifieR_object)[3]) %>%
     as.data.frame(., stringsAsFactors = F)
 }
 

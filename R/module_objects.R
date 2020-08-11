@@ -41,6 +41,7 @@ get_main_module_register_row <- function(MODifieR_module, module_name, con){
     }
   }
   cbind("module_name" = module_name,
+        "module_length" = length(MODifieR_module$module_genes),
         "input_name" = as.character(MODifieR_module$settings$MODifieR_input),
         "module_type" = class(MODifieR_module)[2],
         "ppi_name" = ppi_name) %>%

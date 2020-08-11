@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS ppi_db_register(
 /*General module tables*/
 CREATE TABLE IF NOT EXISTS module_register(
   module_name VARCHAR(100) NOT NULL,
+  module_length INT(5),
   input_name VARCHAR(100) NOT NULL,
   module_type VARCHAR(100) NOT NULL,
   ppi_name VARCHAR(100),
