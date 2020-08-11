@@ -149,7 +149,7 @@ delete_tables <- function(info_table, con){
 }
 
 delete_row <- function(table_name, field_identifier, row_identifier, con){
-  dbExecute(con, sprintf("DELETE FROM '%s' WHERE %s IS '%s'",
+  dbExecute(con, sprintf("DELETE FROM %s WHERE %s IS '%s'",
                          table_name, field_identifier, row_identifier))
 }
 

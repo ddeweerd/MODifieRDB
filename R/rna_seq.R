@@ -94,6 +94,7 @@ delete_rna_object <- function(input_name, con){
   delete_tables(info_table, con)
 
   delete_row("rnaseq_input_register", "input_name", input_name, con)
+  delete_row("rnaseq_input_settings", "input_name", input_name, con)
   delete_row("input_register", "input_name", input_name, con)
 }
 

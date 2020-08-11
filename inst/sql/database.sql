@@ -1,6 +1,7 @@
 /*Input tables*/
 CREATE TABLE IF NOT EXISTS input_register(
   input_name VARCHAR(100) NOT NULL,
+  n_genes INT(5),
   input_type VARCHAR(100) NOT NULL,
   PRIMARY KEY (input_name)
 );

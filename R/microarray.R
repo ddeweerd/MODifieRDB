@@ -98,5 +98,6 @@ delete_microarray_object <- function(input_name, con){
   delete_tables(info_table, con)
 
   delete_row("microarray_input_register", "input_name", input_name, con)
+  delete_row("microarray_input_settings", "input_name", input_name, con)
   delete_row("input_register", "input_name", input_name, con)
 }
