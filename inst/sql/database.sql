@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS input_register(
   PRIMARY KEY (input_name)
 );
 
-
+/*
 CREATE TABLE IF NOT EXISTS microarray_input_register(
   input_name VARCHAR(100) NOT NULL,
   diff_genes VARCHAR(25),
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS microarray_input_register(
   PRIMARY KEY (input_name),
   FOREIGN KEY (input_name) REFERENCES input_register(input_name)
 );
-
+*/
 CREATE TABLE IF NOT EXISTS microarray_input_settings(
   input_name VARCHAR(100) NOT NULL,
   expression_matrix VARCHAR(100),
@@ -32,14 +32,10 @@ CREATE TABLE IF NOT EXISTS microarray_input_settings(
   FOREIGN KEY (input_name) REFERENCES microarray_input_register(input_name)
 );
 
-CREATE TABLE IF NOT EXISTS rnaseq_input_register(
+CREATE TABLE IF NOT EXISTS microarray_input_objects(
   input_name VARCHAR(100) NOT NULL,
-  diff_genes VARCHAR(25),
-  edgeR_deg_table VARCHAR(25),
-  annotated_exprs_matrix VARCHAR(25),
-  count_matrix VARCHAR(25),
-  PRIMARY KEY (input_name),
-  FOREIGN KEY (input_name) REFERENCES input_register(input_name)
+  microarray_object BLOB,
+  PRIMARY KEY (input_name)
 );
 
 CREATE TABLE IF NOT EXISTS rnaseq_input_settings(
@@ -54,6 +50,13 @@ CREATE TABLE IF NOT EXISTS rnaseq_input_settings(
   PRIMARY KEY (input_name),
   FOREIGN KEY (input_name) REFERENCES rnaseq_input_register(input_name)
 );
+
+CREATE TABLE IF NOT EXISTS rnaseq_input_objects(
+  input_name VARCHAR(100) NOT NULL,
+  rnaseq_object BLOB,
+  PRIMARY KEY (input_name)
+);
+
 /*PPI tables*/
 CREATE TABLE IF NOT EXISTS ppi_network_register(
   ppi_name VARCHAR(100) NOT NULL,
@@ -98,13 +101,6 @@ CREATE TABLE IF NOT EXISTS mcode_module_list(
   module_genes VARCHAR(50000000)
  );
 
-CREATE TABLE IF NOT EXISTS mcode_module_register(
-  module_name VARCHAR(100) NOT NULL,
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name)
-
-);
-
 CREATE TABLE IF NOT EXISTS mcode_settings(
   module_name VARCHAR(100) NOT NULL,
   hierarchy REAL,
@@ -118,6 +114,12 @@ CREATE TABLE IF NOT EXISTS mcode_settings(
   dataset_name VARCHAR (500),
   PRIMARY KEY (module_name),
   FOREIGN KEY (module_name) REFERENCES mcode_module_register(module_name)
+);
+
+CREATE TABLE IF NOT EXISTS mcode_objects(
+  module_name VARCHAR(100) NOT NULL,
+  mcode_object BLOB,
+  PRIMARY KEY (module_name)
 );
 
 /*Clique sum permutation module tables*/
@@ -134,11 +136,10 @@ CREATE TABLE IF NOT EXISTS clique_sum_permutation_settings(
   FOREIGN KEY (module_name) REFERENCES module_register(module_name)
 );
 
-CREATE TABLE IF NOT EXISTS clique_sum_permutation_module_register(
+CREATE TABLE IF NOT EXISTS clique_sum_permutation_objects(
   module_name VARCHAR(100) NOT NULL,
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name)
-
+  clique_sum_permutation_object BLOB,
+  PRIMARY KEY (module_name)
 );
 /*DIAMOnD module tables*/
 
@@ -153,28 +154,12 @@ CREATE TABLE IF NOT EXISTS diamond_settings(
   FOREIGN KEY (module_name) REFERENCES module_register(module_name)
 );
 
-CREATE TABLE IF NOT EXISTS diamond_module_register(
+CREATE TABLE IF NOT EXISTS diamond_objects(
   module_name VARCHAR(100) NOT NULL,
-  added_genes VARCHAR(25),
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name)
+  diamond_object BLOB,
+  PRIMARY KEY (module_name)
 );
 
-CREATE TABLE IF NOT EXISTS diamond_seed_genes(
-  module_name VARCHAR(100) NOT NULL,
-  seed_genes VARCHAR(50000000),
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name),
-  FOREIGN KEY (module_name) REFERENCES diamond_module_register(module_name)
-);
-
-CREATE TABLE IF NOT EXISTS diamond_ignored_genes(
-  module_name VARCHAR(100) NOT NULL,
-  ignored_genes VARCHAR(50000000),
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name),
-  FOREIGN KEY (module_name) REFERENCES diamond_module_register(module_name)
-);
 
 /*Correlation clique module tables*/
 
@@ -192,13 +177,11 @@ CREATE TABLE IF NOT EXISTS correlation_clique_settings(
   FOREIGN KEY (module_name) REFERENCES module_register(module_name)
 );
 
-CREATE TABLE IF NOT EXISTS correlation_clique_module_register(
+CREATE TABLE IF NOT EXISTS correlation_clique_objects(
   module_name VARCHAR(100) NOT NULL,
-  frequency_table VARCHAR(25),
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name)
+  correlation_clique_object BLOB,
+  PRIMARY KEY (module_name)
 );
-
 /*Module discoverer module tables*/
 
 CREATE TABLE IF NOT EXISTS module_discoverer_settings(
@@ -213,24 +196,15 @@ CREATE TABLE IF NOT EXISTS module_discoverer_settings(
   FOREIGN KEY (module_name) REFERENCES module_register(module_name)
 );
 
-CREATE TABLE IF NOT EXISTS module_discoverer_module_register(
-  module_name VARCHAR(100) NOT NULL,
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name)
-);
 
+CREATE TABLE IF NOT EXISTS module_discoverer_objects(
+  module_name VARCHAR(100) NOT NULL,
+  module_discoverer_object BLOB,
+  PRIMARY KEY (module_name)
+);
 /*Moda module tables*/
 
-CREATE TABLE IF NOT EXISTS moda_module_list_group1(
-  module_name VARCHAR(100) NOT NULL,
-  module_genes VARCHAR(50000000)
-);
-
- CREATE TABLE IF NOT EXISTS moda_module_list_group2(
-   module_name VARCHAR(100) NOT NULL,
-   module_genes VARCHAR(50000000)
-);
-
+*/
 CREATE TABLE IF NOT EXISTS moda_settings(
   module_name VARCHAR(100) NOT NULL,
   cutmethod VARCHAR(100),
@@ -242,22 +216,12 @@ CREATE TABLE IF NOT EXISTS moda_settings(
   FOREIGN KEY (module_name) REFERENCES module_register(module_name)
 );
 
-CREATE TABLE IF NOT EXISTS moda_module_register(
+CREATE TABLE IF NOT EXISTS moda_objects(
   module_name VARCHAR(100) NOT NULL,
-  jaccard_table VARCHAR(25),
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name)
+  moda_object BLOB,
+  PRIMARY KEY (module_name)
 );
-
 /*WGCNA module tables*/
-
-CREATE TABLE IF NOT EXISTS wgcna_module_register(
-  module_name VARCHAR(100) NOT NULL,
-  info_table VARCHAR(25),
-  correlation_to_trait_table VARCHAR(25),
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name)
-);
 
 CREATE TABLE IF NOT EXISTS wgcna_settings(
   module_name VARCHAR(100) NOT NULL,
@@ -278,31 +242,15 @@ CREATE TABLE IF NOT EXISTS wgcna_settings(
   FOREIGN KEY (module_name) REFERENCES module_register(module_name)
 );
 
-CREATE TABLE IF NOT EXISTS wgcna_soft_threshold(
+CREATE TABLE IF NOT EXISTS wgcna_objects(
   module_name VARCHAR(100) NOT NULL,
-  softthreshold_value REAL
-);
-
-CREATE TABLE IF NOT EXISTS wgcna_module_colors(
-  module_name VARCHAR(100) NOT NULL,
-  module_colors VARCHAR(50000)
+  wgcna_object BLOB,
+  PRIMARY KEY (module_name)
 );
 
 /*DiffCoEx module tables*/
 
-CREATE TABLE IF NOT EXISTS diffcoex_module_register(
-  module_name VARCHAR(100) NOT NULL,
-  module_p_values VARCHAR(25),
-  color_vector VARCHAR(25),
-  PRIMARY KEY (module_name),
-  FOREIGN KEY (module_name) REFERENCES module_register(module_name)
-);
-
-CREATE TABLE IF NOT EXISTS diffcoex_module_colors(
-  module_name VARCHAR(100) NOT NULL,
-  module_colors VARCHAR(50000)
-);
-
+*/
 CREATE TABLE IF NOT EXISTS diffcoex_settings(
   module_name VARCHAR(100) NOT NULL,
   cor_method VARCHAR(50),
@@ -320,18 +268,10 @@ CREATE TABLE IF NOT EXISTS diffcoex_settings(
   FOREIGN KEY (module_name) REFERENCES module_register(module_name)
 );
 
-/*Tag module tables*/
-
-CREATE TABLE IF NOT EXISTS tags(
-  tag VARCHAR(500) NOT NULL,
-  PRIMARY KEY (tag)
-);
-
-CREATE TABLE IF NOT EXISTS tag_input(
-  input_name VARCHAR(100),
-  tag VARCHAR(500) NOT NULL,
-  FOREIGN KEY (input_name) REFERENCES input_register(input_name)
-  FOREIGN KEY (tag) REFERENCES tags(tag)
+CREATE TABLE IF NOT EXISTS diffcoex_objects(
+  module_name VARCHAR(100) NOT NULL,
+  diffcoex_object BLOB,
+  PRIMARY KEY (module_name)
 );
 
 /*general tables*/

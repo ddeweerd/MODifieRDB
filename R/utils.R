@@ -211,3 +211,13 @@ validate_inference_db <- function(module_name, con){
   check_if_null(module_name)
   check_unique_module(module_name, con)
 }
+
+serialize_to_df <- function(enrichment_object, column_name){
+  tibble::tibble(data = blob::as.blob(serialize(enrichment_object, NULL))) %>%
+    set_colnames(column_name)
+}
+
+deserialize_object <- function(serialized_object){
+  unserialize(serialized_object[[1]])
+}
+

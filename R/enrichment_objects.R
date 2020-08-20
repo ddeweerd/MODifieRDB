@@ -10,14 +10,15 @@ enrichment_object_to_db <- function(enrichment_object,
                                                                               enrichment_method),
                append = TRUE)
 
-  dbWriteTable(conn = con, "enrichment_objects", serialize_to_df(enrichment_object),
+  dbWriteTable(conn = con, "enrichment_objects", serialize_to_df(enrichment_object,
+                                                                 "enrichment_object"),
                append = TRUE)
 }
 #'@export
 enrichment_object_from_db <- function(rowid, con){
   query <- sprintf("SELECT * FROM enrichment_objects WHERE rowid IS '%s' ", rowid)
   raw_enrichment <- dbGetQuery(con, query)
-  unserialize(raw_enrichment[1,1][[1]])
+  deserialize_object(raw_enrichment$enrichment_object)
 }
 #'@export
 get_available_enrichment_objects <- function(con){
@@ -31,10 +32,7 @@ prepare_enrichment_register <- function(module_name, enrichment_method){
     set_colnames(c("module_name", "enrichment_method"))
 }
 
-serialize_to_df <- function(enrichment_object){
-  tibble::tibble(data = blob::as.blob(serialize(enrichment_object, NULL))) %>%
-    set_colnames("enrichment_object")
-}
+
 #'@export
 get_input_name_by_enrichment_row <- function(row_id, con){
   query <- sprintf("SELECT DISTINCT input_name FROM module_register
