@@ -6,18 +6,6 @@ CREATE TABLE IF NOT EXISTS input_register(
   PRIMARY KEY (input_name)
 );
 
-/*
-CREATE TABLE IF NOT EXISTS microarray_input_register(
-  input_name VARCHAR(100) NOT NULL,
-  diff_genes VARCHAR(25),
-  limma_probe_table VARCHAR(25),
-  annotated_exprs_matrix VARCHAR(25),
-  expression_matrix VARCHAR(25),
-  annotation_table VARCHAR(25),
-  PRIMARY KEY (input_name),
-  FOREIGN KEY (input_name) REFERENCES input_register(input_name)
-);
-*/
 CREATE TABLE IF NOT EXISTS microarray_input_settings(
   input_name VARCHAR(100) NOT NULL,
   expression_matrix VARCHAR(100),
@@ -279,4 +267,14 @@ CREATE TABLE IF NOT EXISTS unique_genes(
   gene_name VARCHAR(100),
   PRIMARY KEY (gene_name)
 );
+/* enrichment tables*/
+CREATE TABLE IF NOT EXISTS enrichment_register(
+  module_name VARCHAR(100) NOT NULL,
+  enrichment_method VARCHAR(100)
+);
+
+CREATE TABLE IF NOT EXISTS enrichment_objects(
+  enrichment_object BLOB
+);
+
 /*consensus module tables*/

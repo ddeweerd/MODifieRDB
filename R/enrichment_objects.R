@@ -3,10 +3,7 @@ enrichment_object_to_db <- function(enrichment_object,
                                     module_name,
                                     enrichment_method,
                                     con){
-  if(!RSQLite::dbExistsTable(con, "enrichment_register")){
-     create_enrichment_tables(con)
-  }
-  dbWriteTable(conn = con, "enrichment_register", prepare_enrichment_register(module_name,
+   dbWriteTable(conn = con, "enrichment_register", prepare_enrichment_register(module_name,
                                                                               enrichment_method),
                append = TRUE)
 
