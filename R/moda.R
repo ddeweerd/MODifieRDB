@@ -61,4 +61,5 @@ delete_moda_module <- function(module_name, con){
   delete_row("module_genes", "module_name", module_name, con)
   delete_row("module_register", "module_name", module_name, con)
   delete_row("moda_settings", "module_name", module_name, con)
+  delete_row("moda_objects", "module_name", module_name, con)
 }

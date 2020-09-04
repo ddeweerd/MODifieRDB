@@ -37,4 +37,9 @@ get_input_name_by_enrichment_row <- function(row_id, con){
 
   dbGetQuery(con, query)$input_name
 }
+#' @export
+delete_enrichment_object <- function(row_id, con){
+  delete_row("enrichment_register", "row_id", row_id, con)
+  delete_row("enrichment_objects", "row_id", row_id, con)
 
+}

@@ -39,10 +39,11 @@ fetch_rna_object <- function(input_name, con){
   rnaseq_input_object <- dbGetQuery(con, query)
   deserialize_object(rnaseq_input_object$rnaseq_object)
 }
-
+#' @export
 delete_rna_object <- function(input_name, con){
   delete_row("rnaseq_input_settings", "input_name", input_name, con)
   delete_row("input_register", "input_name", input_name, con)
+  delete_row("rnaseq_input_objects", "input_name", input_name, con)
 }
 
 

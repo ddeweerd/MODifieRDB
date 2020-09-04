@@ -41,4 +41,5 @@ delete_correlation_clique_module <- function(module_name, con){
   delete_row("module_genes", "module_name", module_name, con)
   delete_row("module_register", "module_name", module_name, con)
   delete_row("correlation_clique_settings", "module_name", module_name, con)
+  delete_row("correlation_clique_objects", "module_name", module_name, con)
 }

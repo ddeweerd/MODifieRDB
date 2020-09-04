@@ -38,4 +38,5 @@ delete_module_discoverer_module <- function(module_name, con){
   delete_row("module_genes", "module_name", module_name, con)
   delete_row("module_register", "module_name", module_name, con)
   delete_row("module_discoverer_settings", "module_name", module_name, con)
+  delete_row("module_discoverer_objects", "module_name", module_name, con)
 }

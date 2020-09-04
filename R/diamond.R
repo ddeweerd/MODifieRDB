@@ -67,4 +67,7 @@ get_info_table_diamond <- function(module_name, con){
 delete_diamond_module <- function(module_name, con){
   delete_row("module_genes", "module_name", module_name, con)
   delete_row("module_register", "module_name", module_name, con)
+  delete_row("diamond_settings", "module_name", module_name, con)
+  delete_row("diamond_objects", "module_name", module_name, con)
+
 }
