@@ -1,19 +1,23 @@
 #'@export
 enrichment_object_to_db <- function(enrichment_object,
+                                    enrichment_name,
                                     module_name,
                                     enrichment_method,
                                     con){
-   dbWriteTable(conn = con, "enrichment_register", prepare_enrichment_register(module_name,
-                                                                              enrichment_method),
+   dbWriteTable(conn = con, "enrichment_register", prepare_enrichment_register(enrichment_name,
+                                                                               module_name,
+                                                                               enrichment_method),
                append = TRUE)
 
-  dbWriteTable(conn = con, "enrichment_objects", serialize_to_df(enrichment_object,
-                                                                 "enrichment_object"),
+  object_blob <- serialize_to_df(enrichment_object, "enrichment_object") %>%
+    cbind(enrichment_name, ., stringsAsFactors = F)
+  dbWriteTable(conn = con, "enrichment_objects", object_blob,
                append = TRUE)
 }
 #'@export
-enrichment_object_from_db <- function(rowid, con){
-  query <- sprintf("SELECT * FROM enrichment_objects WHERE rowid IS '%s' ", rowid)
+enrichment_object_from_db <- function(enrichment_name, con){
+  query <- sprintf("SELECT * FROM enrichment_objects WHERE enrichment_name IS '%s' ",
+                   enrichment_name)
   raw_enrichment <- dbGetQuery(con, query)
   deserialize_object(raw_enrichment$enrichment_object)
 }
@@ -22,24 +26,25 @@ get_available_enrichment_objects <- function(con){
   if(!RSQLite::dbExistsTable(con, "enrichment_register")){
     stop("There are no enrichment results available", call. = F)
   }
-  dbGetQuery(con, "SELECT rowid, *  FROM enrichment_register")
+  dbGetQuery(con, "SELECT *  FROM enrichment_register")
 }
-prepare_enrichment_register <- function(module_name, enrichment_method){
-  as.data.frame(t(c(module_name, enrichment_method))) %>%
-    set_colnames(c("module_name", "enrichment_method"))
+prepare_enrichment_register <- function(enrichment_name, module_name, enrichment_method){
+  as.data.frame(t(c(enrichment_name, module_name, enrichment_method))) %>%
+    set_colnames(c("enrichment_name", "module_name", "enrichment_method"))
 }
 
 
 #'@export
-get_input_name_by_enrichment_row <- function(row_id, con){
+get_input_name_by_enrichment_row <- function(enrichment_name, con){
   query <- sprintf("SELECT DISTINCT input_name FROM module_register
-  WHERE module_name IS (SELECT module_name FROM enrichment_register WHERE rowid IS '%s') ", row_id)
+  WHERE module_name IS (SELECT module_name FROM enrichment_register WHERE enrichment_name IS '%s') ",
+                   enrichment_name)
 
   dbGetQuery(con, query)$input_name
 }
 #' @export
-delete_enrichment_object <- function(row_id, con){
-  delete_row("enrichment_register", "row_id", row_id, con)
-  delete_row("enrichment_objects", "row_id", row_id, con)
+delete_enrichment_object <- function(enrichment_name, con){
+  delete_row("enrichment_register", "enrichment_name", enrichment_name, con)
+  delete_row("enrichment_objects", "enrichment_name", enrichment_name, con)
 
 }

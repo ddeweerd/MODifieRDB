@@ -269,11 +269,14 @@ CREATE TABLE IF NOT EXISTS unique_genes(
 );
 /* enrichment tables*/
 CREATE TABLE IF NOT EXISTS enrichment_register(
+  enrichment_name VARCHAR(100) NOT NULL,
   module_name VARCHAR(100) NOT NULL,
-  enrichment_method VARCHAR(100)
+  enrichment_method VARCHAR(100),
+  PRIMARY KEY (module_name)
 );
 
 CREATE TABLE IF NOT EXISTS enrichment_objects(
+  enrichment_name VARCHAR(100) NOT NULL,
   enrichment_object BLOB
 );
 
