@@ -272,7 +272,7 @@ CREATE TABLE IF NOT EXISTS enrichment_register(
   enrichment_name VARCHAR(100) NOT NULL,
   module_name VARCHAR(100) NOT NULL,
   enrichment_method VARCHAR(100),
-  PRIMARY KEY (module_name)
+  PRIMARY KEY (enrichment_name)
 );
 
 CREATE TABLE IF NOT EXISTS enrichment_objects(
