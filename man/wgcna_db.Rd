@@ -4,12 +4,25 @@
 \alias{wgcna_db}
 \title{wgcna function wrapper}
 \usage{
-wgcna_db(input_name, group_of_interest, minModuleSize = 30,
-  deepSplit = 2, to_db = TRUE, folder = NULL,
-  pamRespectsDendro = FALSE, mergeCutHeight = 0.1,
-  numericLabels = TRUE, pval_cutoff = 0.05, corType = "bicor",
-  maxBlockSize = 10000, TOMType = "signed", saveTOMs = TRUE,
-  maxPOutliers = 0.1, module_name, con)
+wgcna_db(
+  input_name,
+  group_of_interest,
+  minModuleSize = 30,
+  deepSplit = 2,
+  to_db = TRUE,
+  folder = NULL,
+  pamRespectsDendro = FALSE,
+  mergeCutHeight = 0.1,
+  numericLabels = TRUE,
+  pval_cutoff = 0.05,
+  corType = "bicor",
+  maxBlockSize = 10000,
+  TOMType = "signed",
+  saveTOMs = TRUE,
+  maxPOutliers = 0.1,
+  module_name,
+  con
+)
 }
 \arguments{
 \item{input_name}{Name of the input object in the database}

@@ -4,11 +4,23 @@
 \alias{diffcoex_db}
 \title{DiffCoEx function wrapper}
 \usage{
-diffcoex_db(input_name, beta = NULL, cor_method = "spearman",
-  to_db = TRUE, folder = NULL, cluster_method = "average",
-  cuttree_method = "hybrid", cut_height = 0.996, deepSplit = 0,
-  pamRespectsDendro = FALSE, minClusterSize = 20, cutHeight = 0.2,
-  pval_cutoff = 0.05, module_name, con)
+diffcoex_db(
+  input_name,
+  beta = NULL,
+  cor_method = "spearman",
+  to_db = TRUE,
+  folder = NULL,
+  cluster_method = "average",
+  cuttree_method = "hybrid",
+  cut_height = 0.996,
+  deepSplit = 0,
+  pamRespectsDendro = FALSE,
+  minClusterSize = 20,
+  cutHeight = 0.2,
+  pval_cutoff = 0.05,
+  module_name,
+  con
+)
 }
 \arguments{
 \item{input_name}{Name of the input object in the database}

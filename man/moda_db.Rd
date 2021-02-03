@@ -4,9 +4,17 @@
 \alias{moda_db}
 \title{moda function wrapper}
 \usage{
-moda_db(input_name, cutmethod = "Density", to_db = TRUE,
-  folder = NULL, group_of_interest, specificTheta = 0.1,
-  conservedTheta = 0.1, module_name, con)
+moda_db(
+  input_name,
+  cutmethod = "Density",
+  to_db = TRUE,
+  folder = NULL,
+  group_of_interest,
+  specificTheta = 0.1,
+  conservedTheta = 0.1,
+  module_name,
+  con
+)
 }
 \arguments{
 \item{input_name}{Name of the input object in the database}

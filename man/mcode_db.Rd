@@ -4,10 +4,22 @@
 \alias{mcode_db}
 \title{MCODE function wrapper}
 \usage{
-mcode_db(input_name, ppi_name, to_db = TRUE, folder = NULL,
-  hierarchy = 1, vwp = 0.5, haircut = F, fluff = F, fdt = 0.8,
-  loops = T, deg_cutoff = 0.05, module_cutoff = 3.5, module_name,
-  con)
+mcode_db(
+  input_name,
+  ppi_name,
+  to_db = TRUE,
+  folder = NULL,
+  hierarchy = 1,
+  vwp = 0.5,
+  haircut = F,
+  fluff = F,
+  fdt = 0.8,
+  loops = T,
+  deg_cutoff = 0.05,
+  module_cutoff = 3.5,
+  module_name,
+  con
+)
 }
 \arguments{
 \item{input_name}{Name of the input object in the database}

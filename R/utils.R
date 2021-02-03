@@ -103,6 +103,11 @@ check_ppi_db_presence <- function(MODifieR_module, con){
     stop("PPI DB not in database", call. = F)
   }
 }
+check_comhub_presence <- function(input_name, con){
+  if (length(input_name) == 0){
+    stop("There is no associated comhub object", call. = F)
+  }
+}
 #collapse genes
 collapse_genes <- function(genes){
   paste(genes, collapse = " ")

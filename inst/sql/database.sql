@@ -280,4 +280,17 @@ CREATE TABLE IF NOT EXISTS enrichment_objects(
   enrichment_object BLOB
 );
 
+/*comhub tables*/
+
+CREATE TABLE IF NOT EXISTS comhub_register(
+  comhub_name VARCHAR(100) NOT NULL,
+  input_name VARCHAR(100) NOT NULL,
+  PRIMARY KEY (comhub_name)
+);
+
+CREATE TABLE IF NOT EXISTS comhub_objects(
+  comhub_name VARCHAR(100) NOT NULL,
+  comhub_object BLOB
+);
+
 /*consensus module tables*/

@@ -4,9 +4,19 @@
 \alias{modulediscoverer_db}
 \title{Module Discoverer function wrapper}
 \usage{
-modulediscoverer_db(input_name, ppi_name, permutations = 10000,
-  to_db = TRUE, folder = NULL, deg_cutoff = 0.05, repeats = 15,
-  clique_cutoff = 0.01, n_cores, module_name, con)
+modulediscoverer_db(
+  input_name,
+  ppi_name,
+  permutations = 10000,
+  to_db = TRUE,
+  folder = NULL,
+  deg_cutoff = 0.05,
+  repeats = 15,
+  clique_cutoff = 0.01,
+  n_cores,
+  module_name,
+  con
+)
 }
 \arguments{
 \item{input_name}{Name of the input object in the database}

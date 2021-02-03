@@ -4,10 +4,21 @@
 \alias{correlation_clique_db}
 \title{correlation_clique function wrapper}
 \usage{
-correlation_clique_db(input_name, ppi_name, frequency_cutoff = 0.5,
-  to_db = TRUE, folder = NULL, fraction_of_interactions = 0.4,
-  iteration = 50, clique_significance = 0.01, deg_cutoff = 0.05,
-  multiple_cores = FALSE, n_cores = 3, module_name, con)
+correlation_clique_db(
+  input_name,
+  ppi_name,
+  frequency_cutoff = 0.5,
+  to_db = TRUE,
+  folder = NULL,
+  fraction_of_interactions = 0.4,
+  iteration = 50,
+  clique_significance = 0.01,
+  deg_cutoff = 0.05,
+  multiple_cores = FALSE,
+  n_cores = 3,
+  module_name,
+  con
+)
 }
 \arguments{
 \item{input_name}{Name of the input object in the database}

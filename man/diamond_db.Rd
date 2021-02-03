@@ -4,9 +4,18 @@
 \alias{diamond_db}
 \title{diamond function wrapper}
 \usage{
-diamond_db(input_name, ppi_name, deg_cutoff = 0.05, to_db = TRUE,
-  folder = NULL, n_output_genes = 200, seed_weight = 10,
-  include_seed = F, module_name, con)
+diamond_db(
+  input_name,
+  ppi_name,
+  deg_cutoff = 0.05,
+  to_db = TRUE,
+  folder = NULL,
+  n_output_genes = 200,
+  seed_weight = 10,
+  include_seed = F,
+  module_name,
+  con
+)
 }
 \arguments{
 \item{input_name}{Name of the input object in the database}

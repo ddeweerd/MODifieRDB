@@ -4,9 +4,19 @@
 \alias{clique_sum_db}
 \title{Clique SuM function wrapper}
 \usage{
-clique_sum_db(input_name, ppi_name, n_iterations = 1e+05, to_db = TRUE,
-  folder = NULL, clique_significance = 0.01, min_clique_size = 2,
-  multiple_cores = T, n_cores = 4, module_name, con)
+clique_sum_db(
+  input_name,
+  ppi_name,
+  n_iterations = 1e+05,
+  to_db = TRUE,
+  folder = NULL,
+  clique_significance = 0.01,
+  min_clique_size = 2,
+  multiple_cores = T,
+  n_cores = 4,
+  module_name,
+  con
+)
 }
 \arguments{
 \item{input_name}{Name of the input object in the database}
